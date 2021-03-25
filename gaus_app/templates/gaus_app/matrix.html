@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <style>
+        * {
+            box-sizing: content-box;
+        }
+        input {
+            border-radius: 3px;
+            border: 1px solid rgb(80, 80, 80)
+        }
+        .card {
+            margin: 1em;
+        }
+        h3 {
+            margin:1em
+        }
+    </style>
+    <div style="display: flex;justify-content: center;height: 100vh;align-items: center">
+        
+        <form action="/matrix/" method="post" >
+            {% csrf_token %}
+
+            <div class="card" style="width: fit-content;">
+                <div style="display: flex; justify-content: space-around;margin: 1em;align-items: center;">
+                    <input type="text" name="first_x" value="{{y_length}}" style="display: inline-block;width: 30px;height: 30px;"   readonly="readonly">
+                    <h3>:</h3>
+                    <input type="text" name="first_y" value="{{y_length}}" style="display: inline-block;width: 30px;height: 30px;"   readonly="readonly">
+                    <h3>dimention</h3>
+                </div>
+                {% for element_x in x %}
+                    <div>
+                        {% for element_y in y %}
+                            <input name='x{{element_x }}{{element_y}}' type="number" value="1" name="" id="" style="width: 30px;margin:5px">
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+              </div>
+
+                <select name="operation" id="cars">
+                    <option value="*">*</option>
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                </select>
+
+              <div class="card" style="width: fit-content;">
+                <div style="display: flex; justify-content: space-around; margin: 1em;align-items: center;">
+                    <input type="text" name="second_x" value="{{y_length}}" style="display: inline-block;width: 30px;height: 30px;"  readonly="readonly">
+                    <h3>:</h3>
+                    <input type="text" name="second_y" value="{{y_length}}" style="display: inline-block;width: 30px;height: 30px;"  readonly="readonly">
+                    <h3>dimention</h3>
+                </div>
+                {% for element_x in x %}
+                    <div>
+                        {% for element_y in y %}
+                            <input name='y{{element_x }}{{element_y}}' type="number" value="1" name="" id="" style="width: 30px;margin:5px">
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+              </div>
+           
+            <input type="submit" value="Submit">
+        </form>
+
+        {% if result %}
+        <div style="margin-left:5em">
+            <h3>The result is </h3>
+            {% for col in result %}
+            <div style="display: block;">
+                {% for elem in col %}
+                <span style="font-size: 2em;margin:1em;">{{elem}}</span>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+* {
+    box-sizing: content-box;
+}
+input {
+    border-radius: 3px;
+    border: 1px solid rgb(80, 80, 80)
+}
+.card {
+    margin: 1em;
+}
+h3 {
+    margin:1em
+}
+
+#main_box {
+    padding: 4em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+}
+
+.matrix{
+    border: 1px solid #505050;
+    border-radius: 12px;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+}
+
+#steps_box {
+    margin: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px solid #505050;
+    border-radius: 2em;
+    align-items: center;
+}
+span {
+    font-size: 1.5em;
+}
+.step_box {
+    border: 1px solid #858484;
+    border-radius: 1em;
+    width: 20em;
+    margin: 1em;
+    padding: 1em
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaus</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <div class="flex_body" style="display: flex;flex-direction: column;align-items: center;height: 100vh;justify-content: space-around;">
+        
+        {% if result %}
+            <div class="card">
+                <div class="card-body">
+                    <h2>The result is: {{result}}</h2>
+                    <h3>The error is: {{error}}</h3>
+                </div>
+            </div>
+        {% endif %}
+
+        
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Gausssian distributyion</h5>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label >X1 value</label>
+                        <input type="text" name='x1' class="form-control" id="x1"  placeholder="Enter x1">
+                    </div>
+                    <div class="form-group">
+                        <label >X2 value</label>
+                        <input type="text"  name='x2' class="form-control" id="x2"  placeholder="Enter x2">
+                    </div>
+                    <div class="form-group">
+                        <label >Mean </label>
+                        <input type="text" name='mean' class="form-control" id="mean"  placeholder="Enter Mean">
+                    </div>
+                    <div class="form-group">
+                        <label >Sigma</label>
+                        <input type="text" name="sigma" class="form-control" id="sigma"  placeholder="Enter Sigma">
+                    </div>
+                     
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

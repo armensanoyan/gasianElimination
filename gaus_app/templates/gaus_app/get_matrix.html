@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+
+    <title>Gaussian Elimination</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'gaus_app/css/style.css' %}">
+</head>
+<body>
+   
+    <div id="main_box">
+        
+        {% if error %}
+            <h1> Error {{ error }}</h1>
+        {% endif %}
+
+        <form action="/change_dir/" method='post'>
+        {% csrf_token %}
+            <div style="display: flex; justify-content: space-around;margin: 1em;align-items: center;">
+                <input id="x_dim" type="number" name="x" value="{{x_length}}" style="display: inline-block;width: 30px;height: 30px;" min="1">
+                <h3>:</h3>
+                <input id="y_dim" type="number" name="y" value="{{y_length}}" style="display: inline-block;width: 30px;height: 30px;" min="2">
+                <h3>dimention</h3>
+                <input type="submit" value="Change" >
+            </div>
+        </form>
+
+        <form class='matrix' action="/" method="post">
+            {% csrf_token %}
+            <input type="hidden" value="{{x_length}}" name='x'>
+            <div class="card" style="width: fit-content;margin:2em">
+                
+                {% for element_x in x %}
+                    <div>
+                        {% for element_y in y %}
+                            {% if forloop.last %}
+                                <span> &nbsp;</span>
+                            {% endif %}
+                            <input name='{{element_x }}{{element_y}}' type="number" value="0" name="" id="" style="width: 30px;margin:5px">
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+              </div>
+
+            <input type="submit" value="Count">
+        </form>
+
+        {% if result %}
+        <div id=steps_box >
+            {% for step in result %}
+            <div class="step_box">
+                <h5>{{step.comment}}</h5>
+                {% for row in step.matrix %}
+                    <span>{{row}}</span><br>
+                    {% endfor %}
+            </div> 
+            {% if not forloop.last %}
+                <span>-></span>
+            {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    </div>
+    <script src="{% static 'gaus_app/js/matrix.js' %}"></script>
+</body>
+</html>
